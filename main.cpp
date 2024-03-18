@@ -6,13 +6,18 @@ using namespace std;
 int player_score = 0;
 int cpu_score = 0;
 
+Color Green = Color{38, 185, 154, 255};
+Color Dark_Green = Color{20, 160, 133, 255};
+Color Light_Green = Color{129, 204, 184, 255};
+Color Yellow = Color{243, 213, 91, 255};
+
 class Ball {
 public:
   float x, y;
   int speed_x, speed_y;
   int radius;
 
-  void Draw() { DrawCircle(x, y, radius, WHITE); }
+  void Draw() { DrawCircle(x, y, radius, Yellow); }
   void Update() {
     x += speed_x;
     y += speed_y;
@@ -145,7 +150,9 @@ int main() {
     }
     
     // Drawing
-    ClearBackground(BLACK);
+    ClearBackground(Dark_Green);
+    DrawRectangle(screen_width/2, 0, screen_width/2, screen_height, Green);
+    DrawCircle(screen_width/2, screen_height/2, 150, Light_Green);
     DrawLine(screen_width / 2, 0, screen_width / 2, screen_height, WHITE);
     ball.Draw();
     // Paddle Left
