@@ -68,7 +68,7 @@ public:
   float width, height;
   int speed;
 
-  void Draw() { DrawRectangle(x, y, width, height, WHITE); }
+  void Draw() { DrawRectangleRounded(Rectangle{x,y, width, height}, 0.8, 0, WHITE); }
 
   void Update() {
     if (IsKeyDown(KEY_UP)) {
