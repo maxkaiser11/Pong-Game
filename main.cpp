@@ -23,7 +23,26 @@ public:
   }
 };
 
+class Paddle {
+public:
+  float x, y;
+  float width, height;
+  int speed;
+
+  void Draw() { DrawRectangle(x, y, width, height, WHITE); }
+
+  void Update() {
+    if (IsKeyDown(KEY_UP)) {
+      y -= speed;
+    }
+    if (IsKeyDown(KEY_DOWN)) {
+      y += speed;
+    }
+  }
+};
+
 Ball ball;
+Paddle player;
 
 int main() {
 
@@ -39,11 +58,18 @@ int main() {
   ball.speed_x = 7;
   ball.speed_y = 7;
 
+  player.width = 25;
+  player.height = 120;
+  player.x = screen_width - player.width - 10;
+  player.y = screen_height / 2 - player.height / 2;
+  player.speed = 6;
+
   while (!WindowShouldClose()) {
     BeginDrawing();
 
     // Updating
     ball.Update();
+    player.Update();
 
     // Drawing
     ClearBackground(BLACK);
@@ -52,7 +78,7 @@ int main() {
     // Paddle Left
     DrawRectangle(10, screen_height / 2 - 60, 25, 120, WHITE);
     // Paddle right
-    DrawRectangle(screen_width - 35, screen_height / 2 - 60, 25, 120, WHITE);
+    player.Draw();
     EndDrawing();
   }
 
